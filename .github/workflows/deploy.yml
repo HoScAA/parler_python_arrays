@@ -23,7 +23,8 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Build the JupyterLite site
         run: |
-          cp README.md content
+          mkdir -p content
+          cp README.md content/
           echo "$(date -u +%Y%m%dT%H%M%SZ)-${GITHUB_SHA}" > content/.build_id.txt
           jupyter lite build --contents content --output-dir dist
       - name: Upload artifact
